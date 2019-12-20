@@ -2,8 +2,8 @@
   <div class="nav">
     <el-radio-group v-model="isCollapse"
                     style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开123123</el-radio-button>
-      <el-radio-button :label="true">收起12323</el-radio-button>
+      <el-radio-button :label="false">展开12138</el-radio-button>
+      <el-radio-button :label="true">收起465</el-radio-button>
     </el-radio-group>
     <el-menu :default-active="this.$route.path"
              router

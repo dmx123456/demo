@@ -1,33 +1,35 @@
 <template>
   <div class="nav">
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开1</el-radio-button>
+    <el-radio-group v-model="isCollapse"
+                    style="margin-bottom: 20px;">
+      <el-radio-button :label="false">展开123</el-radio-button>
       <el-radio-button :label="true">收起</el-radio-button>
     </el-radio-group>
-    <el-menu
-      :default-active="this.$route.path"
-      router
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      :collapse="isCollapse"
-    >
-      <div v-for="(item,i) in navList" :key="i">
-        <el-submenu v-if="item.list" :key="i" :index="item.name">
+    <el-menu :default-active="this.$route.path"
+             router
+             class="el-menu-vertical-demo"
+             @open="handleOpen"
+             @close="handleClose"
+             :collapse="isCollapse">
+      <div v-for="(item,i) in navList"
+           :key="i">
+        <el-submenu v-if="item.list"
+                    :key="i"
+                    :index="item.name">
           <template slot="title">
             <i :class="item.icon"></i>
-            <span slot="title" v-if="!isCollapse">{{item.title}}</span>
+            <span slot="title"
+                  v-if="!isCollapse">{{item.title}}</span>
           </template>
           <el-menu-item-group>
             <span slot="title">{{item.title}}</span>
-            <el-menu-item
-              v-for="(list,j) in item.list"
-              :key="j"
-              :index="list.name"
-            >{{list.navTime}}</el-menu-item>
+            <el-menu-item v-for="(list,j) in item.list"
+                          :key="j"
+                          :index="list.name">{{list.navTime}}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-        <el-menu-item :index="item.name" v-else>
+        <el-menu-item :index="item.name"
+                      v-else>
           <i :class="item.icon"></i>
           <span slot="title">{{item.title}}</span>
         </el-menu-item>
@@ -39,7 +41,7 @@
 <script>
 export default {
   props: {},
-  data() {
+  data () {
     return {
       isCollapse: true,
       navList: [
@@ -61,12 +63,12 @@ export default {
     };
   },
   computed: {},
-  created() {},
-  mounted() {},
+  created () { },
+  mounted () { },
   watch: {},
   methods: {
-    handleOpen() {},
-    handleClose() {}
+    handleOpen () { },
+    handleClose () { }
   },
   components: {}
 };

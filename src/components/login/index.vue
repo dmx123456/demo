@@ -4,43 +4,52 @@
     <div class="lw">
       <div class="loginCon">
         <span>账号：</span>
-        <el-input class="user" v-model="user" @blur="user_jy" placeholder="输入用户ID或用户名"></el-input>
+        <el-input class="user"
+                  v-model="user"
+                  @blur="user_jy"
+                  placeholder="输入用户ID或用户名"></el-input>
       </div>
       <div class="loginCon">
         <span>密码：</span>
-        <el-input class="user" placeholder="请输入密码" v-model="pass"></el-input>
+        <el-input class="user"
+                  placeholder="请输入密码"
+                  v-model="pass"></el-input>
       </div>
-      <div style = "display:flex; justify-content: space-between;">
-        <el-button type="primary" class="login" @click="login">登录</el-button>
-        <el-button type="primary" class="login" @click="reg">注册</el-button>
+      <div style="display:flex; justify-content: space-between;">
+        <el-button type="primary"
+                   class="login"
+                   @click="login">登录</el-button>
+        <el-button type="primary"
+                   class="login"
+                   @click="reg">注册</el-button>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       user: "",
       pass: ""
     };
   },
   methods: {
-    user_jy() {
+    user_jy () {
       if (this.user == "") {
         alert("用户名不能为空");
       }
     },
-    login() {
+    login () {
       if (this.user == "" || this.pass == "") {
         alert("账号密码不能为空");
       } else {
         this.$store.state.user = this.user;
-        this.$router.push({path: '/home',query: {id:1}});
+        this.$router.push({ path: '/home', query: { id: 1 } });
       }
     },
-    reg() {
-      this.$store.dispatch('REG',{user:this.user, pass:this.pass})
+    reg () {
+      this.$store.dispatch('REG', { user: this.user, pass: this.pass })
     }
   }
 };

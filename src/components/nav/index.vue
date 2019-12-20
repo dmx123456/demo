@@ -7,8 +7,9 @@
     </el-radio-group>
     <el-menu :default-active="this.$route.path"
              router
-             class="el-menu-vertical-demo"
-             @open="handleOpen"
+             class="el-menu-vertical-dem
+             @open="
+             handleOpen"
              @close="handleClose"
              :collapse="isCollapse">
       <div v-for="(item,i) in navList"

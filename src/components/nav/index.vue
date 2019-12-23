@@ -47,34 +47,14 @@ export default {
   data() {
     return {
       isCollapse: true,
-      navList: [
-        {
-          title: "首页",
-          name: "/home",
-          icon: "el-icon-menu"
-        },
-        {
-          title: "留言板",
-          name: "",
-          icon: "el-icon-edit-outline",
-          list: [
-            {
-              name: "/sidelist",
-              title: "列表",
-              list: [
-                { name: "/sidelist", title: "列表" },
-                { name: "/", title: "2" }
-              ]
-            },
-            { name: "/sideadd", title: "留言" }
-          ]
-        }
-      ]
+      navList: []
     };
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.navList = this.$store.state.nav;
+  },
   watch: {},
   methods: {
     handleOpen(key, keyPath) {

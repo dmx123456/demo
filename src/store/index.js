@@ -8,20 +8,21 @@ export default new Vuex.Store({
   state: sessionStorage.getItem('state') ? JSON.parse(sessionStorage.getItem('state')) : {
     //id
     user: '',
-    lyList:[{
-      title:"首页",
-      addTime:"2019-01-11",
-      content:"12345670",
-      user:"dmx"
+    nav: '',
+    lyList: [{
+      title: "首页",
+      addTime: "2019-01-11",
+      content: "12345670",
+      user: "dmx"
     }],
     regList: [{
-      "user":'dmx',
-      "pass":'123'
+      "user": 'dmx',
+      "pass": '123'
     }],
     //技能状态
   },
   getters: {
-    getNowFormatDate() {
+    getNowFormatDate () {
       var date = new Date();
       var seperator1 = "-";
       var year = date.getFullYear();
@@ -38,32 +39,32 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    EXIT(state) {
+    EXIT (state) {
       state.user = '';
       router.push({
         path: "/login"
       });
     },
-    REG(state,data) {
+    REG (state, data) {
       var reg = state.regList;
-      reg.map(item=>{
+      reg.map(item => {
         // if(data.user == item.user){
         //   alert("")
         // }
       })
       reg.push(data)
       console.log(state.regList);
-      
+
     }
   },
   actions: {
-    EXITC({
+    EXITC ({
       commit
     }) {
       commit("EXIT")
     },
-    REG({commit},sj){
-      commit("REG",sj)
+    REG ({ commit }, sj) {
+      commit("REG", sj)
     }
   }
 })

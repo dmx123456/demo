@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <div class="indexC">
-      <Nav></Nav>
+      <Nav v-if="this.$store.state.nav"></Nav>
       <router-view class="content" />
     </div>
   </div>
@@ -12,6 +12,7 @@
 import Header from "@/components/header";
 import Nav from "@/components/nav";
 import { mapActions } from "vuex";
+import axios from "axios";
 export default {
   name: "App",
   data() {
@@ -20,6 +21,11 @@ export default {
     };
   },
   methods: {
+    getnav() {
+      axios.get("http://localhost:8081/static/nav.json").then(res => {
+        this.$store.state.nav = res.data;
+      });
+    },
     exit() {
       this.$store.dispatch("EXITC");
     },
@@ -30,6 +36,7 @@ export default {
   mounted() {
     window.addEventListener("unload", this.saveState);
     this.user = this.$store.state.user;
+    this.getnav();
   },
   components: {
     Header,

@@ -1,48 +1,50 @@
 <template>
   <div class="nav">
-    <el-radio-group v-model="isCollapse"
-                    style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开1213920</el-radio-button>
-      <el-radio-button :label="true">收起aabb</el-radio-button>
-    </el-radio-group>
-    <el-menu :default-active="this.$route.path"
-             router
-             class="el-menu-vertical-dem
-             @open="
-             handleOpen"
-             @close="handleClose"
-             :collapse="isCollapse">
-      <div v-for="(item,i) in navList"
-           :key="i">
-        <el-submenu v-if="item.list"
+    <el-row class="tac">
+      <el-col :span="12">
+        <el-menu
+          :default-active="this.$route.path"
+          router
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
+          <div v-for="(item,i) in navList" :key="i">
+            <el-submenu :index="item.name" v-if="item.list">
+              <template slot="title">
+                <i :class="item.icon"></i>
+                <span>{{item.title}}</span>
+              </template>
+              <div v-for="(sec,i) in item.list" :key="i">
+                <el-submenu :index="sec.name" v-if="sec.list">
+                  <template slot="title">{{sec.title}}</template>
+                  <el-menu-item
+                    :index="three.name"
+                    v-for="(three,i) in sec.list"
                     :key="i"
-                    :index="item.name">
-          <template slot="title">
-            <i :class="item.icon"></i>
-            <span slot="title"
-                  v-if="!isCollapse">{{item.title}}</span>
-          </template>
-          <el-menu-item-group>
-            <span slot="title">{{item.title}}</span>
-            <el-menu-item v-for="(list,j) in item.list"
-                          :key="j"
-                          :index="list.name">{{list.navTime}}</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-menu-item :index="item.name"
-                      v-else>
-          <i :class="item.icon"></i>
-          <span slot="title">{{item.title}}</span>
-        </el-menu-item>
-      </div>
-    </el-menu>
+                  >{{three.title}}</el-menu-item>
+                </el-submenu>
+                <el-menu-item v-else :index="sec.name">{{sec.title}}</el-menu-item>
+              </div>
+            </el-submenu>
+            <el-menu-item v-else :index="item.name">
+              <i :class="item.icon"></i>
+              <span slot="title">{{item.title}}</span>
+            </el-menu-item>
+          </div>
+        </el-menu>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 export default {
   props: {},
-  data () {
+  data() {
     return {
       isCollapse: true,
       navList: [
@@ -53,23 +55,34 @@ export default {
         },
         {
           title: "留言板",
-          name: "/sidelist",
+          name: "",
           icon: "el-icon-edit-outline",
           list: [
-            { name: "/sidelist", navTime: "列表" },
-            { name: "/sideadd", navTime: "留言" }
+            {
+              name: "/sidelist",
+              title: "列表",
+              list: [
+                { name: "/sidelist", title: "列表" },
+                { name: "/", title: "2" }
+              ]
+            },
+            { name: "/sideadd", title: "留言" }
           ]
         }
       ]
     };
   },
   computed: {},
-  created () { },
-  mounted () { },
+  created() {},
+  mounted() {},
   watch: {},
   methods: {
-    handleOpen () { },
-    handleClose () { }
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
   },
   components: {}
 };
